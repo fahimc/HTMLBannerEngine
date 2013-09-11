@@ -1,11 +1,14 @@
-HTMLBannerEngine
-================
+#HTMLBannerEngine
 
 This framework gives you the ability to build simple or complex HTML Banners fast with minimal JS.  
 This as a built in simple tween engine for tweening CSS attributes. 
 
 ###SimpleTweener
 [SimpleTweenerJS](https://github.com/fahimc/SimpleTweenerJS)
+
+
+##DEMO
+[HTMLBanner](http://8fc.co.uk/github/preview/htmlbanner)
 
 ##Usage  
 
@@ -108,4 +111,3 @@ BannerEngine.addListener(sectionName,eventName,callback);
 ```
 BannerEngine.addListener("engine","loopEnd",function(){console.log("looping has ended");});
 ```
-
