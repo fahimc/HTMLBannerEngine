@@ -1,0 +1,120 @@
+*
+{
+	padding:0;
+	margin:0;
+}
+html,body
+{
+	width:100%;
+	height:100%;
+	
+}
+body
+{
+	 min-height: 100%;
+background-color: #ccc;
+}
+.wrapper
+{
+	width:100%;
+	height:100%;
+	max-width: 1170px;
+	max-height: 250px;
+	position: relative;
+}
+.leftHolder
+{
+	background-color: #000;
+	width:100%;
+	margin-right: 114px;
+	height:100%;
+	display: inline-block;
+	position: absolute;
+	max-height: 250px;
+}
+#slideHolder,#sectionHolder
+{
+	position: relative;
+	width:100%;
+	height:100%;
+	overflow: hidden;
+	
+}
+#logoHolder
+{
+	display: inline-block;
+	background-color: #FFF;
+	height:100%;
+	width:28.2%;
+	position: absolute;
+	right:0;
+	max-height: 250px;
+	overflow: hidden;
+}
+#logo
+{
+	display: inline-block;
+	height:100%;
+	width:100%;
+}
+/* SLIDE one */ 
+.slide
+{
+	opacity: 0;
+	display: none;
+}
+
+#lion
+{
+
+	width:32.64%;
+	
+}
+#frame2Text,#frame3Text
+{
+	position: absolute;
+	top:0;
+}
+#slide1_copyHolder
+{
+	border-left: 4px solid #00a4e8;
+	border-right: 4px solid #00a4e8;
+	width:0;
+	position: absolute;
+	color:#FFFFFF;
+	left:113px;
+	top:50%;
+	height:85px;
+	margin-top:-42.5px;
+	overflow: hidden;
+	text-align: center;
+}
+#slide1_copyHolder p
+{
+	min-width:100px;
+	text-align: center;
+}
+/* Slide 2 */
+#slide2 
+{
+	color: #FFFFFF;
+	text-align: center;
+}
+#slide2 p
+{
+		width:100%;
+}
+#slide2 p.blue
+{
+	
+	margin-top: 10px;
+	color:#00a4e8;
+}
+#slide2 .copyHolder
+{
+	width:100%;
+	position: absolute;
+	height:50px;
+	top:50%;
+	margin-top:-25px;
+}
