@@ -13,6 +13,8 @@ var BannerEngine=
 	{
 		animateIn:"animateInComplete",
 		animateOut:"animateOutComplete",
+		animateOutStarted:"animateOutStarted",
+		animateInStarted:"animateInStarted",
 		loopEnd:"loopEnd"
 	},
 	att:{
@@ -82,7 +84,7 @@ var BannerEngine=
 		this.currentIndex=index;
 		var root=this;
 		tween.to(slide, this.animateInDuration, {opacity:1},function(){root.onSlideInComplete();});
-
+		this.dispatchEvents(this.currentIndex,this.events.animateInStarted);
 	},
 	onSlideInComplete:function()
 	{
@@ -117,7 +119,7 @@ var BannerEngine=
 			tween.to(slide, 1, {opacity:0},function(){root.onSlideOutComplete();});
 		}
 		
-		
+		this.dispatchEvents(this.currentIndex,this.events.animateOutStarted);
 
 	},
 	onSlideOutComplete:function(once)
@@ -136,6 +138,12 @@ var BannerEngine=
 			this.currentLoops++;
 		}
 		this.animateSlideIn(this.currentIndex);
+	},
+		restart:function()
+	{
+		this.currentIndex=this.children.length-1;
+		this.currentLoops=0;
+		this.animateSlideOut();
 	},
 	end:function()
 	{
