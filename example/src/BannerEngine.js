@@ -10,7 +10,10 @@ var BannerEngine=
 	currentLoops:0,
 	maxLoops:3,
 	nextIndex:null,
-	
+	animateOutDuration:1,
+	frameOrder:null,
+	frameIndex:0,
+	_hide:false,
 	timers:
 	{
 		delay:null
@@ -106,7 +109,7 @@ var BannerEngine=
 		var root = this;
 		this.timers.delay = setTimeout(function(){root.animateSlideOut();},(delay*1000));
 	},
-	animateSlideOut:function() {
+	animateSlideOut:function(once) {
 		
 		var slide = this.children[this.currentIndex];
 		
@@ -119,12 +122,12 @@ var BannerEngine=
 		{
 			var index=this.currentIndex;
 			setTimeout(function(){
-				tween.to(slide, 1, {opacity:0},function(){root.onSlideOutComplete(index);});
+				tween.to(slide, this.animateOutDuration, {opacity:0},function(){root.onSlideOutComplete(once!=undefined?once:index);});
 			},Number(slide.getAttribute(this.att.out))*1000);
 			this.nextSlide();
 		}else{
 			
-			tween.to(slide, 1, {opacity:0},function(){root.onSlideOutComplete();});
+			tween.to(slide, this.animateOutDuration, {opacity:0},function(){root.onSlideOutComplete(once);});
 		}
 		
 		this.dispatchEvents(this.currentIndex,this.events.animateOutStarted);
@@ -139,11 +142,13 @@ var BannerEngine=
 	},
 	nextSlide:function()
 	{
-		//console.log(this.currentIndex,this.nextIndex);
 		this.currentIndex=this.nextIndex!=null?this.nextIndex:this.currentIndex+1;
+		this.frameIndex=this.nextIndex!=null?this.nextIndex:this.frameIndex+1;
+		if(this.frameOrder.length>0)this.currentIndex=this.frameOrder[this.frameIndex];
 		this.nextIndex=null;
-		if(this.currentIndex>=this.children.length)
+		if(this.currentIndex>=this.children.length||this.frameIndex>=this.children.length)
 		{
+			this.frameIndex=0;
 			this.currentIndex=0;
 			this.currentLoops++;
 		}
@@ -178,7 +183,18 @@ var BannerEngine=
 	{
 		this.nextIndex=index;
 		this.stop();
-		this.animateSlideOut();
+		if(!this._hide)
+		{
+			this.animateSlideOut();
+		}else{
+			this.nextSlide();
+		}
+	},
+	hide:function()
+	{
+		this._hide=true;
+			this.stop();
+			this.animateSlideOut(this.currentIndex);
 	}
 	
 };
