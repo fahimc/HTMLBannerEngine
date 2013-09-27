@@ -1,4 +1,4 @@
-var tween={fs:35,tweens:[],to:function(e,t,n,r){var i=new Tweener(e,t,n,r);this.tweens.push(i);if(!window.tweenTimer){var s=this;var o=function(){s.onFrame()};window.tweenTimer=setInterval(o,35)}},onFrame:function(){for(var e=0;e<this.tweens.length;e++){if(this.tweens[e].done){delete this.tweens[e];this.tweens.splice(e,1)}else{this.tweens[e].onFrame()}}if(this.tweens.length==0){clearInterval(window.tweenTimer);window.tweenTimer=null}},setOpacity:function(e,t){if(e.style["-ms-filter"])e.style["-ms-filter"]="progid:DXImageTransform.Microsoft.Alpha(Opacity="+t*100+")";if(e.style["filter"])e.style["filter"]=t;if(e.style["-moz-opacity"])e.style["-moz-opacity"]=t;if(e.style["-khtml-opacity"])e.style["-khtml-opacity"]=t},getStyle:function(e,t){if(e.currentStyle)return e.currentStyle[t];else if(document.defaultView&&document.defaultView.getComputedStyle)return document.defaultView.getComputedStyle(e,"")[t];else return e.style[t]}};var Tweener=function(e,t,n,r){this.obj=e;this.duration=t;this.props=n;this.callback=r;this.done=false;var i=35;this.onFrame=function(){var t=0;var r=0;for(var s in this.props){var o;r++;if(this.props[s].value==null){var u=String(n[s]).indexOf("px")>=0;o=String(this.props[s]).replace("px","");this.props[s]={value:o,negative:null,complete:false,subtraction:null,currentProp:null,suffix:u};this.props[s].currentProp=this.obj.style[s]?e.style[s].replace("px",""):0}else{o=this.props[s].value}if(this.props[s].currentProp==null||this.props[s].currentProp==""){if(tween.getStyle(this.obj,s)==""||tween.getStyle(e,s)==null||tween.getStyle(e,s)==undefined){this.props[s].currentProp=s=="opacity"?1:0}else{this.props[s].currentProp=tween.getStyle(e,s).replace(/\D/g,"")}}if(this.props[s].negative==null){this.props[s].negative=Number(o)<Number(this.props[s].currentProp)?true:false;this.props[s].subtraction=Math.abs(Number(this.props[s].currentProp)-Number(o))/(this.duration*1e3/i)}if(this.props[s].negative&&Number(this.props[s].currentProp)-Number(this.props[s].subtraction)>=Number(o)||!this.props[s].negative&&Number(this.props[s].currentProp)+Number(this.props[s].subtraction)<=Number(o)){if(this.props[s].negative){this.props[s].currentProp=Number(this.props[s].currentProp)-Number(this.props[s].subtraction)}else{this.props[s].currentProp=Number(this.props[s].currentProp)+Number(this.props[s].subtraction)}this.obj.style[s]=this.props[s].currentProp+(this.props[s].suffix?"px":"");if(s=="opacity")tween.setOpacity(this.obj,this.props[s].currentProp)}else if(!this.props[s].complete){this.obj.style[s]=o+(this.props[s].suffix?"px":"");this.props[s].complete=true;t++}}if(t>=r){this.done=true;if(this.callback)this.callback()}}}
+var tween={fs:35,tweens:[],to:function(e,t,n,r){var i=new Tweener(e,t,n,r);this.tweens.push(i);if(!window.tweenTimer){var s=this;var o=function(){s.onFrame()};window.tweenTimer=setInterval(o,35)}},onFrame:function(){for(var e=0;e<this.tweens.length;e++){if(this.tweens[e].done){delete this.tweens[e];this.tweens.splice(e,1)}else{this.tweens[e].onFrame()}}if(this.tweens.length==0){clearInterval(window.tweenTimer);window.tweenTimer=null}},killAll:function(){clearInterval(window.tweenTimer);window.tweenTimer=null;this.tweens=[]},setOpacity:function(e,t){if(e.style["-ms-filter"])e.style["-ms-filter"]="progid:DXImageTransform.Microsoft.Alpha(Opacity="+t*100+")";if(e.style["filter"])e.style["filter"]=t;if(e.style["-moz-opacity"])e.style["-moz-opacity"]=t;if(e.style["-khtml-opacity"])e.style["-khtml-opacity"]=t},getStyle:function(e,t){if(e.currentStyle)return e.currentStyle[t];else if(document.defaultView&&document.defaultView.getComputedStyle)return document.defaultView.getComputedStyle(e,"")[t];else return e.style[t]}};var Tweener=function(e,t,n,r){this.obj=e;this.duration=t;this.props=n;this.callback=r;this.done=false;var i=35;this.onFrame=function(){var t=0;var r=0;for(var s in this.props){var o;r++;if(this.props[s].value==null){var u=String(n[s]).indexOf("px")>=0;o=String(this.props[s]).replace("px","");this.props[s]={value:o,negative:null,complete:false,subtraction:null,currentProp:null,suffix:u};this.props[s].currentProp=this.obj.style[s]?e.style[s].replace("px",""):0}else{o=this.props[s].value}if(this.props[s].currentProp==null||this.props[s].currentProp==""){if(tween.getStyle(this.obj,s)==""||tween.getStyle(e,s)==null||tween.getStyle(e,s)==undefined){this.props[s].currentProp=s=="opacity"?1:0}else{this.props[s].currentProp=tween.getStyle(e,s).replace(/\D/g,"")}}if(this.props[s].negative==null){this.props[s].negative=Number(o)<Number(this.props[s].currentProp)?true:false;this.props[s].subtraction=Math.abs(Number(this.props[s].currentProp)-Number(o))/(this.duration*1e3/i)}if(this.props[s].negative&&Number(this.props[s].currentProp)-Number(this.props[s].subtraction)>=Number(o)||!this.props[s].negative&&Number(this.props[s].currentProp)+Number(this.props[s].subtraction)<=Number(o)){if(this.props[s].negative){this.props[s].currentProp=Number(this.props[s].currentProp)-Number(this.props[s].subtraction)}else{this.props[s].currentProp=Number(this.props[s].currentProp)+Number(this.props[s].subtraction)}this.obj.style[s]=this.props[s].currentProp+(this.props[s].suffix?"px":"");if(s=="opacity")tween.setOpacity(this.obj,this.props[s].currentProp)}else if(!this.props[s].complete){this.obj.style[s]=o+(this.props[s].suffix?"px":"");this.props[s].complete=true;t++}}if(t>=r){this.done=true;if(this.callback)this.callback()}}}
 var BannerEngine=
 {
 	holderId:"sectionHolder",
@@ -9,6 +9,12 @@ var BannerEngine=
 	holdDuration:1,
 	currentLoops:0,
 	maxLoops:3,
+	nextIndex:null,
+	
+	timers:
+	{
+		delay:null
+	},
 	events:
 	{
 		animateIn:"animateInComplete",
@@ -20,7 +26,8 @@ var BannerEngine=
 	att:{
 		delay:"data-delay",
 		loops:"data-loops",
-		out:"data-out"
+		out:"data-out",
+		stop:"data-stop"
 	},
 	globalName:"engine",
 	init:function()
@@ -97,7 +104,7 @@ var BannerEngine=
 		}
 		var delay = this.children[this.currentIndex].getAttribute(this.att.delay)!=undefined?this.children[this.currentIndex].getAttribute(this.att.delay):this.holdDuration;
 		var root = this;
-		setTimeout(function(){root.animateSlideOut();},(delay*1000));
+		this.timers.delay = setTimeout(function(){root.animateSlideOut();},(delay*1000));
 	},
 	animateSlideOut:function() {
 		
@@ -110,8 +117,9 @@ var BannerEngine=
 		var root=this;
 		if(slide.getAttribute(this.att.out)!=undefined)
 		{
+			var index=this.currentIndex;
 			setTimeout(function(){
-				tween.to(slide, 1, {opacity:0},function(){root.onSlideOutComplete(true);});
+				tween.to(slide, 1, {opacity:0},function(){root.onSlideOutComplete(index);});
 			},Number(slide.getAttribute(this.att.out))*1000);
 			this.nextSlide();
 		}else{
@@ -124,19 +132,22 @@ var BannerEngine=
 	},
 	onSlideOutComplete:function(once)
 	{
-		var slide = this.children[this.currentIndex];
-		slide.style.display="block";
+		var slide = this.children[once!=undefined?once:this.currentIndex];
+		slide.style.display="none";
 		this.dispatchEvents(this.currentIndex,this.events.animateOut);
-		if(!once)this.nextSlide(once);
+		if(once==undefined)this.nextSlide(once);
 	},
 	nextSlide:function()
 	{
-		this.currentIndex++;
+		//console.log(this.currentIndex,this.nextIndex);
+		this.currentIndex=this.nextIndex!=null?this.nextIndex:this.currentIndex+1;
+		this.nextIndex=null;
 		if(this.currentIndex>=this.children.length)
 		{
 			this.currentIndex=0;
 			this.currentLoops++;
 		}
+		
 		this.animateSlideIn(this.currentIndex);
 	},
 		restart:function()
@@ -157,6 +168,17 @@ var BannerEngine=
 		{
 			this.callbacks[eventName][index][a]();
 		}
+	},
+	stop:function()
+	{
+		clearTimeout(this.timers.delay);
+		tween.killAll();
+	},
+	gotoAndPlay:function(index)
+	{
+		this.nextIndex=index;
+		this.stop();
+		this.animateSlideOut();
 	}
 	
 };
