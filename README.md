@@ -61,7 +61,7 @@ Add these to the a frame/section.
 **data-delay**:Number - The length of time(in seconds) in holds on this frame/section.
 **data-out**:Number - The length of time(in seconds) before it fades out after it has finished holding.
 
-##JavaScript Events
+##JavaScript Events and Methods
 You can do more complex things by adding listeners to the built-in events. and it will call back the function you provide. Use the 'BannerEngine.addListener' method.
 
 ###Animate-in Complete
@@ -110,4 +110,32 @@ BannerEngine.addListener(sectionName,eventName,callback);
 ####Example
 ```
 BannerEngine.addListener("engine","loopEnd",function(){console.log("looping has ended");});
+```
+
+###gotoAndPlay(index:Number)
+If you need to goto a specific frame via a button press or something else you can use the 'gotoAndPlay' method. Index is the position of the frame you wish to go to. (starts from zero).  
+
+```
+BannerEngine.gotoAndPlay(3);
+```
+
+###stop()
+If you need to stop the banner you can use the 'stop' method. This will stop the banner going to the next frame. 
+
+```
+BannerEngine.stop();
+```
+
+###play()
+To continue playing the banner just call 'play'.
+
+```
+BannerEngine.play();
+```
+
+###frameOrder:Array
+This allows you to set the order of the frames in sequence. It gives you the option of dynamically changing the sequence when required.
+
+```
+BannerEngine.frameOrder = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 ```
