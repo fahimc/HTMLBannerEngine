@@ -144,7 +144,7 @@ var BannerEngine=
 	{
 		this.currentIndex=this.nextIndex!=null?this.nextIndex:this.currentIndex+1;
 		this.frameIndex=this.nextIndex!=null?this.nextIndex:this.frameIndex+1;
-		if(this.frameOrder.length>0)this.currentIndex=this.frameOrder[this.frameIndex];
+		if(this.frameOrder && this.frameOrder.length>0)this.currentIndex=this.frameOrder[this.frameIndex];
 		this.nextIndex=null;
 		if(this.currentIndex>=this.children.length||this.frameIndex>=this.children.length)
 		{
@@ -178,6 +178,10 @@ var BannerEngine=
 	{
 		clearTimeout(this.timers.delay);
 		tween.killAll();
+	},
+	play:function()
+	{
+		this.animateSlideOut();
 	},
 	gotoAndPlay:function(index)
 	{
