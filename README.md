@@ -43,6 +43,23 @@ Within the holder create DIV which are stacked. Each DIV represents a frame/sect
 </div>
 ...
 ```
+###Adding CSS to your Frames/Sections
+You need to add a class to each of the sections and add the following css.
+```
+.slide
+{
+opacity: 0 and display: none
+}
+
+<div id="sectionHolder">
+  <div class="slide">
+    <p>This is Frame 1</p>
+  </div>
+  <div class="slide">
+    <p>This is Frame 2</p>
+  </div>
+</div>
+```
 
 If you run this you will see each frame fading in and out.  
 
